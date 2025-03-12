@@ -98,6 +98,9 @@
 	sslVerify = false
 	postBuffer = 524288000
 
+[tag]
+	sort = version:refname
+
 ## --------------------------- Tool -------------------------------
 
 # diff-so-fancy
