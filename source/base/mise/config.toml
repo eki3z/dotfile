@@ -4,7 +4,7 @@ disable_hints = ["*"]
 
 [tools]
 # do not update version of python/node/ruby for installed global tool bin
-python = "3.11.9"
+python = "3.12.9"
 rust   = "1.82.0"
 node   = "22.9.0"
 ruby   = "3.3.5"
