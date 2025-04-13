@@ -130,7 +130,7 @@ export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 # export PATH="$PNPM_HOME:$PATH"
 
 # Golang
-# export GOPATH=$HOME/Code/go
+# export GOPATH=$HOME/code/go
 # export PATH=$GOPATH/bin:$PATH
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
@@ -142,3 +142,6 @@ export HTML_TIDY="$HOME/.tidyrc"
 
 # moonbit
 export PATH="$HOME/.moon/bin:$PATH"
+
+# flutter
+export PATH="$HOME/code/dev/flutter/bin:$PATH"
