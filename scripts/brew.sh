@@ -17,13 +17,13 @@ brew_install() {
   # exclude emacs-head
   HOMEBREW_BUNDLE_BREW_SKIP="daviderestivo/emacs-head/emacs-head@28"
 
-  brew bundle install --no-lock --file "$_brew_cache"
+  brew bundle install --file "$_brew_cache"
   print_result $? "brew: install done"
 }
 
 brew_dump() {
   print_in_yellow "\n   brew: dump start ...\n\n"
-  brew bundle dump --formula --cask --tap --no-lock --force --file "$_brew_cache"
+  brew bundle dump --formula --cask --tap --force --file "$_brew_cache"
   print_result $? "brew: dump done"
 }
 
