@@ -25,7 +25,7 @@ export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 
 # PATH
-export PATH=$HOME/.local/usr/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/.config/emacs/etc/bin:$HOME/.local/bin:$PATH
 
 export EDITOR="ec"
 export GIT_PAGER="diff-so-fancy | less --tabs=4 -RFX"

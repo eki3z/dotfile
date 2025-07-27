@@ -37,8 +37,6 @@ declare -ar BASE=(
   # ripgrep
   "base/.ripgreprc <- .config/.ripgreprc"
   "base/.rgignore <- .config/.rgignore"
-  # # ranger
-  # "base/ranger <- .config/ranger"
   # tealdeer
   "base/tealdeer.toml <- .config/tealdeer/config.toml"
   # lazygit
@@ -61,24 +59,10 @@ declare -ar BASE=(
   # .eslintrc.json: base/.eslintrc.json
   # yaml
   "base/.yamllint <- .yamllint"
-  # py
-  "base/pip.conf <- .config/pip/pip.conf"
-  # ruby
-  "base/.gemrc <- .gemrc"
   # sh
   "base/.shellcheckrc <- .shellcheckrc"
   # cpp
   "base/.clang-format <- .clang-format"
-  # rust
-  "base/cargo.toml <- .cargo/config.toml"
-  ## perl
-  # "base/MyConfig.pm <- .cpan/CPAN/MyConfig.pm"
-  # "base/.perlcriticrc <- .perlcriticrc"
-  # md
-  "base/.mdlrc <- .mdlrc"
-  "base/mdl-rule.rb <- mdl-rule.rb"
-  # mise
-  "base/.default-npm-packages <- .default-npm-packages"
   # lua
   "base/stylua.toml <- .config/stylua.toml"
 )
@@ -87,12 +71,8 @@ declare -ar BASE=(
 
 declare -ar SYS_mac=(
   # SELF
-  "mac/bin <- .local/usr/bin"
-
   "mac/.gitconfig <- .gitconfig"
-
   "mac/.gitignore <- .gitignore"
-
   # py
   "mac/requirements.txt <- $dotcache/requirements.txt"
 

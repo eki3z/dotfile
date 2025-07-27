@@ -1,15 +1,15 @@
 [settings]
 experimental = true
 disable_hints = ["*"]
+idiomatic_version_file_enable_tools = ["python"]
 
 [tools]
 # do not update version of python/node/ruby for installed global tool bin
-python = "3.12.10"
-rust   = "1.82.0"
-node   = "22.9.0"
-ruby   = "3.3.5"
+python = "3.13.5"
+node   = "24.3.0"
 go     = "1.23.3"
+lua = "5.4.7"
 deno   = "latest"
-lua    = "latest"
+bun = "latest"
 zig    = "latest"
 usage  = "latest"
