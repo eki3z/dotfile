@@ -74,7 +74,7 @@ declare -ar SYS_mac=(
   "mac/.gitconfig <- .gitconfig"
   "mac/.gitignore <- .gitignore"
   # py
-  "mac/requirements.txt <- $dotcache/requirements.txt"
+  # "mac/requirements.txt <- $dotcache/requirements.txt"
 
   #pnpm
   # "mac/Pnpmfile <- $dotcache/Pnpmfile"
@@ -95,7 +95,7 @@ declare -ar SYS_mac=(
 declare -ar SYS_linux=(
   "linux/.gitconfig <- .gitconfig"
   # py
-  "linux/requirements.txt <- $dotcache/requirements.txt"
+  # "linux/requirements.txt <- $dotcache/requirements.txt"
   # pnpm
   "linux/Pnpmfile <- $dotcache/Pnpmfile"
 )
