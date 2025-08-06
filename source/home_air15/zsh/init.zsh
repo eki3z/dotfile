@@ -166,11 +166,16 @@ plugin_ensure zdharma-continuum/fast-syntax-highlighting
 
 # brew installation
 command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://mirrors.ustc.edu.cn/misc/brew-install.sh)"
+
+# mise installation
+command -v mise >/dev/null || /bin/bash -c "$(curl https://mise.run)"
+
+# pnpm installation
+command -v pnpm >/dev/null || /bin/bash -c "$(curl -fsSL https://get.pnpm.io/install.sh)"
+
 # brew completion
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
-# mise installation
-command -v mise >/dev/null || curl https://mise.run | sh
 
 # autosuggestions
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
@@ -208,12 +213,12 @@ ZSH_EVALCACHE_DIR=$ZSH_CACHE_DIR/.zsh-evalcache
 
 # pip
 command -v pip >/dev/null && _evalcache pip completion --zsh 2>/dev/null
-
 # fzf
 command -v fzf >/dev/null && _evalcache fzf --zsh 2>/dev/null
-
 # moon
 command -v moon >/dev/null && _evalcache moon shell-completion --shell zsh 2>/dev/null
+# pnpm
+command -v pnpm >/dev/null && _evalcache pnpm completion zsh 2>/dev/null
 
 # zlua, for emacs use
 export ZLUA_SCRIPT

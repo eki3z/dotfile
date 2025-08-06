@@ -76,11 +76,11 @@ declare -ar SYS_mac=(
   # py
   # "mac/requirements.txt <- $dotcache/requirements.txt"
 
-  #pnpm
-  # "mac/Pnpmfile <- $dotcache/Pnpmfile"
+  # pnpm
+  "mac/Pnpmfile <- $dotcache/Pnpmfile"
 
-  #npm
-  "mac/Npmfile <- $dotcache/Npmfile"
+  # # npm
+  # "mac/Npmfile <- $dotcache/Npmfile"
 
   # proxychain
   "mac/proxychains.conf <- .config/proxychains.conf"

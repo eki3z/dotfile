@@ -125,9 +125,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
-# # pnpm
-# export PNPM_HOME="$HOME/Library/pnpm"
-# export PATH="$PNPM_HOME:$PATH"
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 # Golang
 # export GOPATH=$HOME/code/go
