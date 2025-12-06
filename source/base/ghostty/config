@@ -1,0 +1,28 @@
+theme = TokyoNight
+font-size = 17.0
+font-family = LXGW WenKai Mono Light
+font-family-bold = LXGW WenKai Medium
+font-thicken = true
+cursor-style = block
+background-opacity = 0.96
+background-blur = 40
+link-url = true
+window-new-tab-position = end
+resize-overlay = always
+resize-overlay-position = top-right
+focus-follows-mouse = true
+clipboard-read = allow
+quick-terminal-position = top
+quick-terminal-size = 80%,100%
+quick-terminal-autohide = true
+quick-terminal-animation-duration = 0
+shell-integration-features = no-cursor, sudo, title, ssh-terminfo, ssh-env
+
+# Ctrl env+m to enter
+keybind = ctrl+m=text:\x0d
+keybind = global:alt+t=toggle_quick_terminal
+
+macos-titlebar-proxy-icon = hidden
+macos-option-as-alt = true
+macos-shortcuts = allow
+# macos-hidden = true

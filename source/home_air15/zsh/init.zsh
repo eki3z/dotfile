@@ -117,6 +117,7 @@ plugins=(
   jsontools
   rust
   sudo
+  ssh
   starship
   urltools
   uv

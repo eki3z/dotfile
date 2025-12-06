@@ -5,8 +5,12 @@ idiomatic_version_file_enable_tools = ["python"]
 
 [tools]
 go     = "1.23.3"
-lua = "5.4.7"
+lua    = '5.1.5'
 deno   = "latest"
-bun = "latest"
+bun    = "latest"
 zig    = "latest"
 usage  = "latest"
+
+[env]
+# v3.13.0 error when installed
+ASDF_LUA_LUAROCKS_VERSION = '3.12.2'

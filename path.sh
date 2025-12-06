@@ -15,8 +15,8 @@ declare -a sets_all=("BASE" "SYS_mac" "SYS_linux" "SYS_win" "home_air15")
 
 declare -ar BASE=(
   # TERMINAL
-  # kitty
-  "base/kitty <- .config/kitty"
+  # ghostty
+  "base/ghostty/config <- .config/ghostty/config"
   # theme
   "base/starship.toml <- .config/starship.toml"
 
@@ -33,7 +33,7 @@ declare -ar BASE=(
   # htop
   "base/htoprc <- .config/htop/htoprc"
   # bat
-  "base/bat <- .config/bat"
+  # "base/bat <- .config/bat"
   # ripgrep
   "base/.ripgreprc <- .config/.ripgreprc"
   "base/.rgignore <- .config/.rgignore"
@@ -42,7 +42,7 @@ declare -ar BASE=(
   # lazygit
   "base/lazygit.yml <- .config/lazygit/config.yml"
   # fzf
-  "base/fzf <- .config/fzf"
+  # "base/fzf <- .config/fzf"
   # enchant
   "base/enchant/enchant.ordering <- .config/enchant/enchant.ordering"
   "base/enchant/en_US.dic <- .config/enchant/en_US.dic"
@@ -50,10 +50,6 @@ declare -ar BASE=(
   "base/mise <- .config/mise"
 
   # LANG
-  # css, less, scss
-  "base/.stylelintrc.json <- .stylelintrc.json"
-  # html
-  "base/.tidyrc <- .tidyrc"
   # js
   "base/.prettierrc.js <- .prettierrc.js"
   # .eslintrc.json: base/.eslintrc.json
@@ -82,9 +78,6 @@ declare -ar SYS_mac=(
   # # npm
   # "mac/Npmfile <- $dotcache/Npmfile"
 
-  # proxychain
-  "mac/proxychains.conf <- .config/proxychains.conf"
-
   # git-cliff
   # "base/cliff.toml <- Library/Application\ Support/git-cliff/cliff.toml"
 
@@ -106,6 +99,7 @@ declare -ar SYS_linux=(
 
 declare -ar home_air15=(
   # zsh
+
   "home_air15/zsh/.zshenv <- .zshenv"
   "home_air15/zsh/.zsh_history <- $dotcache/.zsh_history"
   "home_air15/zsh/init.zsh <- $dotcache/init.zsh"

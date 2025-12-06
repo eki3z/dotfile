@@ -50,3 +50,12 @@ Host github.com
 #   Port 443
 #   User git
 #   ProxyCommand ncat -v --proxy-type socks5 --proxy ${SOCKS} %h %p
+
+Host mpro
+  HostName 192.168.1.200
+  User eki   
+
+Host ali1
+  HostName 47.238.98.31
+  User root
+  

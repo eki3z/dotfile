@@ -52,7 +52,7 @@ export HOMEBREW_BAT=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_UPGRADE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
-export HOMEBREW_BUNDLE_BREW_SKIP="daviderestivo/emacs-head/emacs-head@30"
+export HOMEBREW_BUNDLE_BREW_SKIP="daviderestivo/emacs-head/emacs-head@31"
 
 # tsinghua source
 export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
@@ -80,9 +80,6 @@ export PATH=/opt/homebrew/opt/gnu-getopt/bin:$PATH
 # Ripgrep
 export RIPGREP_CONFIG_PATH=$CONFIG_DIR/.ripgreprc
 
-# proxychains-ng
-export PROXYCHAINS_CONF_FILE=$CONFIG_DIR/proxychains.conf
-
 # lazygit
 # FIXME config dir failed
 export XDG_CONFIG_HOME="$CONFIG_DIR"
@@ -106,7 +103,44 @@ export _ZL_NO_ALIASES=1
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS_FILE="$CONFIG_DIR/fzf/tokyo-night.fzfrc"
+export FZF_DEFAULT_OPTS="
+--header-first
+--ansi
+--reverse
+--cycle
+--multi
+--sort
+--no-unicode
+--no-scrollbar
+--marker='+ '
+--separator=''
+--info=inline
+--margin=0,0,0,1
+--height='60%'
+--bind=change:first
+--bind=btab:up+toggle
+--bind=ctrl-n:down
+--bind=ctrl-p:up
+--bind=alt-n:next-history
+--bind=alt-p:previous-history
+--bind=ctrl-u:cancel
+--bind=ctrl-l:jump
+--bind=ctrl-t:toggle-all
+--bind=ctrl-v:clear-selection
+--color=dark
+--color=fg:#a9b1d6:dim
+--color=hl:#73daca:dim:bold
+--color=bg+:#24304a
+--color=fg+:#a9b1d6:underline:bold
+--color=hl+:#a9b1d6:underline:bold
+--color=pointer:#f7768e:bold
+--color=gutter:#1a1b26
+--color=marker:#f7768e:bold
+--color=prompt:#7aa2f7:dim
+--color=query:#73daca:bold
+--color=spinner:#e0af68:dim
+--color=info:#bb9af7:bold
+--color=header:#7aa2f7:dim"
 
 #  --------------------------- mise -------------------------------
 
