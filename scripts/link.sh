@@ -4,11 +4,55 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 source "./utils.sh"
-source "../path.sh"
 
 SOURCE_DIR="$(cd ../source && pwd)"
+CONFIG_FILE="../links.conf"
 
 declare -a sets_to_link=("BASE")
+
+# Function to read configuration and populate arrays
+read_config() {
+  local current_section=""
+  
+  if [ ! -f "$CONFIG_FILE" ]; then
+    print_error "Configuration file not found: $CONFIG_FILE"
+    exit 1
+  fi
+
+  while IFS= read -r line || [ -n "$line" ]; do
+    # Skip comments and empty lines
+    [[ "$line" =~ ^#.*$ ]] || [[ -z "$line" ]] && continue
+    
+    # Check for section headers [SECTION_NAME]
+    if [[ "$line" =~ ^\[(.*)\]$ ]]; then
+      current_section="${BASH_REMATCH[1]}"
+      # Declare the array globally using declare -ga (Bash 4+)
+      declare -ga "$current_section"
+      continue
+    fi
+
+    # Add line to current section array if section is defined
+    if [ -n "$current_section" ]; then
+        # Use nameref to append to the dynamically named array (Bash 4.3+)
+        local -n current_array="$current_section"
+        current_array+=("$line")
+    fi
+  done < "$CONFIG_FILE"
+}
+
+# Load configuration immediately
+read_config
+
+# Dynamically get all defined sets (arrays) that match our expected pattern or logic
+# For simplicity, we can hardcode the known sets or derive them.
+# Given the previous logic used 'sets_all', let's reconstruct it.
+# We can grep the config file for sections to populate sets_all dynamically.
+declare -a sets_all
+while IFS= read -r line; do
+  if [[ "$line" =~ ^\[(.*)\]$ ]]; then
+    sets_all+=("${BASH_REMATCH[1]}")
+  fi
+done < "$CONFIG_FILE"
 
 select_set() {
   local COLUMNS=0
@@ -68,10 +112,8 @@ create_symlinks() {
     print_in_yellow "\n   $set\n\n"
     printf "   %-9s %-50s        %s\n" "Status" "Target" "Source"
 
-    # Use eval to copy the array contents safely (Bash 3.x compatible)
-    # This avoids flattening the array to a string and issues with spaces/special chars
-    local -a mappings
-    eval "mappings=(\"\${$set[@]}\")"
+    # Use nameref for cleaner array access (Bash 4.3+)
+    local -n mappings="$set"
 
     for i in "${mappings[@]}"; do
       local source target cmd info
