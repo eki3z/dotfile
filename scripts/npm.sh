@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && source "./utils.sh"
 
-_npm_cache="$dotcache/Npmfile"
+_npm_cache="$DOTCACHE/Npmfile"
 
 npm_check() {
   if ! cmd_exists "npm"; then

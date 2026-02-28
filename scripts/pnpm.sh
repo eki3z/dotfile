@@ -1,6 +1,6 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" && source "./utils.sh"
 
-_pnpm_cache="$dotcache/Pnpmfile"
+_pnpm_cache="$DOTCACHE/Pnpmfile"
 
 pnpm_check() {
   if ! cmd_exists "pnpm"; then

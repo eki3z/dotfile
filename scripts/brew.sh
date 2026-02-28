@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && source "./utils.sh"
 
-_brew_cache="$dotcache/Brewfile"
+_brew_cache="$DOTCACHE/Brewfile"
 
 brewfile_check() {
   if [ ! -h "$_brew_cache" ]; then
@@ -15,7 +15,7 @@ brew_install() {
   print_in_yellow "\n   brew: install start ...\n\n"
 
   # exclude emacs-head
-  HOMEBREW_BUNDLE_BREW_SKIP="daviderestivo/emacs-head/emacs-head@28"
+  HOMEBREW_BUNDLE_BREW_SKIP="daviderestivo/emacs-head/emacs-head@31"
 
   brew bundle install --file "$_brew_cache"
   print_result $? "brew: install done"

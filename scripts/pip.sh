@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && source "./utils.sh"
 
-_pip_cache="$dotcache/requirements.txt"
+_pip_cache="$DOTCACHE/requirements.txt"
 
 pip_check() {
   if ! cmd_exists "pip3"; then
@@ -24,7 +24,9 @@ pip_install() {
 
 pip_freeze() {
   print_in_yellow "\n   pip: freeze start ...\n\n"
-  pip3 freeze -r "$_pip_cache" >"$_pip_cache"
+  local tmp_file
+  tmp_file="$(mktemp)"
+  pip3 freeze -r "$_pip_cache" >"$tmp_file" && mv "$tmp_file" "$_pip_cache"
   print_result $? "pip: freeze done"
 }
 

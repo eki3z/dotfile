@@ -130,7 +130,7 @@ create_symlinks() {
 
       # Handle variable expansion manually for common variables
       # We do this because we're reading lines from a file, so variables aren't auto-expanded
-      target="${target//\$dotcache/$dotcache}"
+      target="${target//\$DOTCACHE/$DOTCACHE}"
       target="${target/#\~/$HOME}"
 
       # Replace $HOME with ~ for pretty printing
@@ -154,7 +154,7 @@ create_symlinks() {
         else
           ask_for_confirmation "\"$target_pretty\" exists, overwrite it?"
           if answer_is_yes; then
-            mv "$target" "$dotcache/backup"
+            mv "$target" "$DOTCACHE/backup"
             execute "$cmd" "Cover $info"
           else
             print_error "Keep  $info"
@@ -172,7 +172,7 @@ create_symlinks() {
 
 main() {
   print_in_purple "\n   link: backup check ...\n\n"
-  mkd "$dotcache/backup"
+  mkd "$DOTCACHE/backup"
 
   print_in_purple "\n   link: select your choice ...\n\n"
   select_set

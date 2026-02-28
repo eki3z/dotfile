@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Global constants
-# dotcache directory (absolute path)
-dotcache="${DOTFILE_HOME:-$HOME/.config/dotfile}/.cache"
+# DOTCACHE directory (absolute path)
+DOTCACHE="${DOTFILE_HOME:-$HOME/.config/dotfile}/.cache"
 # Use tput for better portability, fallback to ANSI codes if tput fails
 if tput setaf 1 &> /dev/null; then
   COLOR_RED=$(tput setaf 1)
