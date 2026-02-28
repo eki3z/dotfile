@@ -3,9 +3,9 @@
 #######################################
 #
 # Definition: Associate Array which is used to store symbolic path.
-# Format: SOURCE <- TARGET
-#         SOURCE's path is based on subdirectory of ./source,
+# Format: TARGET -> SOURCE
 #         TARGET's path (usually starts with ~ or $dotcache).
+#         SOURCE's path is based on subdirectory of ./source,
 #
 #######################################
 
@@ -16,86 +16,86 @@ declare -a sets_all=("BASE" "SYS_mac" "SYS_linux" "SYS_win" "home_air15")
 declare -ar BASE=(
   # TERMINAL
   # ghostty
-  "base/ghostty/config <- ~/.config/ghostty/config"
+  "~/.config/ghostty/config -> base/ghostty/config"
   # theme
-  "base/starship.toml <- ~/.config/starship.toml"
+  "~/.config/starship.toml -> base/starship.toml"
 
   # GIT
-  "base/.global.gitconfig <- ~/.global.gitconfig"
-  "base/.gitmessage <- ~/.gitmessage"
-  "base/gh.yml <- ~/.config/gh/config.yml"
+  "~/.global.gitconfig -> base/.global.gitconfig"
+  "~/.gitmessage -> base/.gitmessage"
+  "~/.config/gh/config.yml -> base/gh.yml"
 
   # TOOL
   # carbon-now
-  "base/.carbon-now.json <- ~/.carbon-now.json"
+  "~/.carbon-now.json -> base/.carbon-now.json"
   # editorconfig
-  "base/.editorconfig <- ~/.editorconfig"
+  "~/.editorconfig -> base/.editorconfig"
   # htop
-  "base/htoprc <- ~/.config/htop/htoprc"
+  "~/.config/htop/htoprc -> base/htoprc"
   # bat
-  # "base/bat <- ~/.config/bat"
+  # "~/.config/bat -> base/bat"
   # ripgrep
-  "base/.ripgreprc <- ~/.config/.ripgreprc"
-  "base/.rgignore <- ~/.config/.rgignore"
+  "~/.config/.ripgreprc -> base/.ripgreprc"
+  "~/.config/.rgignore -> base/.rgignore"
   # tealdeer
-  "base/tealdeer.toml <- ~/.config/tealdeer/config.toml"
+  "~/.config/tealdeer/config.toml -> base/tealdeer.toml"
   # lazygit
-  "base/lazygit.yml <- ~/.config/lazygit/config.yml"
+  "~/.config/lazygit/config.yml -> base/lazygit.yml"
   # fzf
-  # "base/fzf <- ~/.config/fzf"
+  # "~/.config/fzf -> base/fzf"
   # enchant
-  "base/enchant/enchant.ordering <- ~/.config/enchant/enchant.ordering"
-  "base/enchant/en_US.dic <- ~/.config/enchant/en_US.dic"
+  "~/.config/enchant/enchant.ordering -> base/enchant/enchant.ordering"
+  "~/.config/enchant/en_US.dic -> base/enchant/en_US.dic"
   # mise
-  "base/mise <- ~/.config/mise"
+  "~/.config/mise -> base/mise"
 
   # LANG
   # js
-  "base/.prettierrc.js <- ~/.prettierrc.js"
+  "~/.prettierrc.js -> base/.prettierrc.js"
   # .eslintrc.json: base/.eslintrc.json
   # yaml
-  "base/.yamllint <- ~/.yamllint"
+  "~/.yamllint -> base/.yamllint"
   # sh
-  "base/.shellcheckrc <- ~/.shellcheckrc"
+  "~/.shellcheckrc -> base/.shellcheckrc"
   # cpp
-  "base/.clang-format <- ~/.clang-format"
+  "~/.clang-format -> base/.clang-format"
   # lua
-  "base/stylua.toml <- ~/.config/stylua.toml"
+  "~/.config/stylua.toml -> base/stylua.toml"
   # python
-  "base/ruff.toml <- ~/.config/ruff/ruff.toml"
+  "~/.config/ruff/ruff.toml -> base/ruff.toml"
 )
 
 # --------------------------- MAC -------------------------------
 
 declare -ar SYS_mac=(
   # SELF
-  "mac/.gitconfig <- ~/.gitconfig"
-  "mac/.gitignore <- ~/.gitignore"
+  "~/.gitconfig -> mac/.gitconfig"
+  "~/.gitignore -> mac/.gitignore"
   # py
-  # "mac/requirements.txt <- $dotcache/requirements.txt"
+  # "$dotcache/requirements.txt -> mac/requirements.txt"
 
   # pnpm
-  "mac/Pnpmfile <- $dotcache/Pnpmfile"
+  "$dotcache/Pnpmfile -> mac/Pnpmfile"
 
   # # npm
-  # "mac/Npmfile <- $dotcache/Npmfile"
+  # "$dotcache/Npmfile -> mac/Npmfile"
 
   # git-cliff
-  # "base/cliff.toml <- ~/Library/Application\ Support/git-cliff/cliff.toml"
+  # "~/Library/Application\ Support/git-cliff/cliff.toml -> base/cliff.toml"
 
   #lsp
-  "mac/rassumfrassum <- ~/.config/rassumfrassum"
+  "~/.config/rassumfrassum -> mac/rassumfrassum"
 
 )
 
 # --------------------------- LINUX -------------------------------
 
 declare -ar SYS_linux=(
-  "linux/.gitconfig <- ~/.gitconfig"
+  "~/.gitconfig -> linux/.gitconfig"
   # py
-  # "linux/requirements.txt <- $dotcache/requirements.txt"
+  # "$dotcache/requirements.txt -> linux/requirements.txt"
   # pnpm
-  "linux/Pnpmfile <- $dotcache/Pnpmfile"
+  "$dotcache/Pnpmfile -> linux/Pnpmfile"
 )
 
 #  -------------------------- machine ------------------------------
@@ -103,14 +103,14 @@ declare -ar SYS_linux=(
 declare -ar home_air15=(
   # zsh
 
-  "home_air15/zsh/.zshenv <- ~/.zshenv"
-  "home_air15/zsh/.zsh_history <- $dotcache/.zsh_history"
-  "home_air15/zsh/init.zsh <- $dotcache/init.zsh"
+  "~/.zshenv -> home_air15/zsh/.zshenv"
+  "$dotcache/.zsh_history -> home_air15/zsh/.zsh_history"
+  "$dotcache/init.zsh -> home_air15/zsh/init.zsh"
 
   # brew
-  "home_air15/Brewfile <- $dotcache/Brewfile"
+  "$dotcache/Brewfile -> home_air15/Brewfile"
 
   # ssh
-  "home_air15/ssh_config <- ~/.ssh/config"
+  "~/.ssh/config -> home_air15/ssh_config"
 
 )

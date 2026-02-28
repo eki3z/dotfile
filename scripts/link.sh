@@ -6,6 +6,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 source "./utils.sh"
 source "../path.sh"
 
+SOURCE_DIR="$(cd ../source && pwd)"
+
 declare -a sets_to_link=("BASE")
 
 select_set() {
@@ -52,11 +54,11 @@ select_set() {
 #######################################
 # create_symlinks
 # Outputs:
-# SOURCE    TARGET    STATUS
+# TARGET    SOURCE    STATUS
 #  No        No        Lack
 #  Yes       Yes       Same/Cover/Keep
-#  Yes       No        New
 #  No        Yes       New
+#  Yes       No        New
 #######################################
 
 create_symlinks() {
@@ -64,21 +66,22 @@ create_symlinks() {
   for set in "${sets_to_link[@]}"; do
 
     print_in_yellow "\n   $set\n\n"
-    printf "   %-9s %-30s        %s\n" "Status" "Source" "Target"
+    printf "   %-9s %-50s        %s\n" "Status" "Target" "Source"
 
     local IFS='^'
-    local regexp='^(.*) <- (.*)$'
+    local regexp='^(.*) -> (.*)$'
 
     for i in $(eval printf '%s^' \"\$\{"${set}"[@]\}\"); do
       local source target cmd info
       if [[ "$i" =~ $regexp ]]; then
-        source="$(cd ../source && echo "$PWD/${BASH_REMATCH[1]}" || exit)"
-        target="${BASH_REMATCH[2]}"
+        target="${BASH_REMATCH[1]}"
         target="${target/#\~/$HOME}"
         local target_pretty="${target/#$HOME/~}"
 
+        source="$SOURCE_DIR/${BASH_REMATCH[2]}"
+
         cmd="ln -fs \"$source\" \"$target\""
-        info="$(printf "%-30s  <-    %s" "${BASH_REMATCH[1]}" "$target_pretty")"
+        info="$(printf "%-50s  ->    %s" "$target_pretty" "${BASH_REMATCH[2]}")"
 
         if [ ! -e "$source" ] && [ ! -e "$target" ]; then
           print_error "Lack  $info"
