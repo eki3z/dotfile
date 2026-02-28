@@ -68,22 +68,33 @@ create_symlinks() {
     print_in_yellow "\n   $set\n\n"
     printf "   %-9s %-50s        %s\n" "Status" "Target" "Source"
 
-    local IFS='^'
-    local regexp='^(.*) -> (.*)$'
+    # Use eval to copy the array contents safely (Bash 3.x compatible)
+    # This avoids flattening the array to a string and issues with spaces/special chars
+    local -a mappings
+    eval "mappings=(\"\${$set[@]}\")"
 
-    for i in $(eval printf '%s^' \"\$\{"${set}"[@]\}\"); do
+    for i in "${mappings[@]}"; do
       local source target cmd info
-      if [[ "$i" =~ $regexp ]]; then
-        target="${BASH_REMATCH[1]}"
-        target="${target/#\~/$HOME}"
-        local target_pretty="${target/#$HOME/~}"
+      
+      # Use parameter expansion instead of regex for better performance and compatibility
+      # Split by " -> "
+      target="${i%% -> *}"
+      local source_rel="${i#* -> }"
 
-        source="$SOURCE_DIR/${BASH_REMATCH[2]}"
+      # Basic validation: ensure the split actually happened
+      if [[ "$target" == "$i" ]] || [[ "$source_rel" == "$i" ]]; then
+          continue
+      fi
 
-        cmd="ln -fs \"$source\" \"$target\""
-        info="$(printf "%-50s  ->    %s" "$target_pretty" "${BASH_REMATCH[2]}")"
+      target="${target/#\~/$HOME}"
+      local target_pretty="${target/#$HOME/~}"
 
-        if [ ! -e "$source" ] && [ ! -e "$target" ]; then
+      source="$SOURCE_DIR/$source_rel"
+
+      cmd="ln -fs \"$source\" \"$target\""
+      info="$(printf "%-50s  ->    %s" "$target_pretty" "$source_rel")"
+
+      if [ ! -e "$source" ] && [ ! -e "$target" ]; then
           print_error "Lack  $info"
 
         elif [ -e "$source" ] && [ -e "$target" ]; then
@@ -104,7 +115,6 @@ create_symlinks() {
           mkdir -p "$(dirname "$source")" "$(dirname "$target")"
           [ ! -e "$source" ] && mv "$target" "$source"
           execute "$cmd" "New   $info"
-        fi
       fi
     done
   done
