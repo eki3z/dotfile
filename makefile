@@ -1,7 +1,7 @@
-SHELL    := /bin/bash
+SHELL    := /usr/bin/env bash
 SCRIPTS_DIR  = $(CURDIR)/scripts
 
-.PHONY: help link cmdtool homebrew mac-setup brew pip npm emacs update
+.PHONY: help symlink cmdtool homebrew mac-setup brew pip npm emacs update
 
 cmdtool:
 	@source $(SCRIPTS_DIR)/cmd-line-tool.sh;
@@ -12,10 +12,10 @@ homebrew:
 shell: homebrew
 	@source $(SCRIPTS_DIR)/shell.sh;
 
-link:
-	@source $(SCRIPTS_DIR)/link.sh;
+symlink:
+	@source $(SCRIPTS_DIR)/symlink.sh;
 
-mac-setup: cmdtool homebrew shell link
+mac-setup: cmdtool homebrew shell symlink
 	@exec zsh;
 
 brew: homebrew
@@ -43,7 +43,7 @@ help::
 	$(info make cmdtool      = check cmd-line-tool for MacOS)
 	$(info make homebrew     = check homebrew for MacOS)
 	$(info make shell        = check bash, zsh for MacOS)
-	$(info make link         = check link source to target)
+	$(info make symlink      = create symlink according to links.conf)
 	$(info make mac-setup    = check cmd-line-tool, homebrew and shell for MacOS)
 	$(info make brew         = install or dump package according to Brewfile)
 	$(info make pip          = install or freeze package according to requirements.txt)
