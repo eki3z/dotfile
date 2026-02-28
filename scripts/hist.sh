@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && source "./utils.sh"
 
-_hist_cache="$HOME/$dotcache/.zsh_history"
+_hist_cache="$dotcache/.zsh_history"
 
 hist_check() {
   if [ -z "$HISTFILE" ]; then

@@ -5,7 +5,7 @@
 # Definition: Associate Array which is used to store symbolic path.
 # Format: SOURCE <- TARGET
 #         SOURCE's path is based on subdirectory of ./source,
-#         TARGET's path is based on $HOME.
+#         TARGET's path (usually starts with ~ or $dotcache).
 #
 #######################################
 
@@ -16,59 +16,61 @@ declare -a sets_all=("BASE" "SYS_mac" "SYS_linux" "SYS_win" "home_air15")
 declare -ar BASE=(
   # TERMINAL
   # ghostty
-  "base/ghostty/config <- .config/ghostty/config"
+  "base/ghostty/config <- ~/.config/ghostty/config"
   # theme
-  "base/starship.toml <- .config/starship.toml"
+  "base/starship.toml <- ~/.config/starship.toml"
 
   # GIT
-  "base/.global.gitconfig <- .global.gitconfig"
-  "base/.gitmessage <- .gitmessage"
-  "base/gh.yml <- .config/gh/config.yml"
+  "base/.global.gitconfig <- ~/.global.gitconfig"
+  "base/.gitmessage <- ~/.gitmessage"
+  "base/gh.yml <- ~/.config/gh/config.yml"
 
   # TOOL
   # carbon-now
-  "base/.carbon-now.json <- .carbon-now.json"
+  "base/.carbon-now.json <- ~/.carbon-now.json"
   # editorconfig
-  "base/.editorconfig <- .editorconfig"
+  "base/.editorconfig <- ~/.editorconfig"
   # htop
-  "base/htoprc <- .config/htop/htoprc"
+  "base/htoprc <- ~/.config/htop/htoprc"
   # bat
-  # "base/bat <- .config/bat"
+  # "base/bat <- ~/.config/bat"
   # ripgrep
-  "base/.ripgreprc <- .config/.ripgreprc"
-  "base/.rgignore <- .config/.rgignore"
+  "base/.ripgreprc <- ~/.config/.ripgreprc"
+  "base/.rgignore <- ~/.config/.rgignore"
   # tealdeer
-  "base/tealdeer.toml <- .config/tealdeer/config.toml"
+  "base/tealdeer.toml <- ~/.config/tealdeer/config.toml"
   # lazygit
-  "base/lazygit.yml <- .config/lazygit/config.yml"
+  "base/lazygit.yml <- ~/.config/lazygit/config.yml"
   # fzf
-  # "base/fzf <- .config/fzf"
+  # "base/fzf <- ~/.config/fzf"
   # enchant
-  "base/enchant/enchant.ordering <- .config/enchant/enchant.ordering"
-  "base/enchant/en_US.dic <- .config/enchant/en_US.dic"
+  "base/enchant/enchant.ordering <- ~/.config/enchant/enchant.ordering"
+  "base/enchant/en_US.dic <- ~/.config/enchant/en_US.dic"
   # mise
-  "base/mise <- .config/mise"
+  "base/mise <- ~/.config/mise"
 
   # LANG
   # js
-  "base/.prettierrc.js <- .prettierrc.js"
+  "base/.prettierrc.js <- ~/.prettierrc.js"
   # .eslintrc.json: base/.eslintrc.json
   # yaml
-  "base/.yamllint <- .yamllint"
+  "base/.yamllint <- ~/.yamllint"
   # sh
-  "base/.shellcheckrc <- .shellcheckrc"
+  "base/.shellcheckrc <- ~/.shellcheckrc"
   # cpp
-  "base/.clang-format <- .clang-format"
+  "base/.clang-format <- ~/.clang-format"
   # lua
-  "base/stylua.toml <- .config/stylua.toml"
+  "base/stylua.toml <- ~/.config/stylua.toml"
+  # python
+  "base/ruff.toml <- ~/.config/ruff/ruff.toml"
 )
 
 # --------------------------- MAC -------------------------------
 
 declare -ar SYS_mac=(
   # SELF
-  "mac/.gitconfig <- .gitconfig"
-  "mac/.gitignore <- .gitignore"
+  "mac/.gitconfig <- ~/.gitconfig"
+  "mac/.gitignore <- ~/.gitignore"
   # py
   # "mac/requirements.txt <- $dotcache/requirements.txt"
 
@@ -79,28 +81,29 @@ declare -ar SYS_mac=(
   # "mac/Npmfile <- $dotcache/Npmfile"
 
   # git-cliff
-  # "base/cliff.toml <- Library/Application\ Support/git-cliff/cliff.toml"
+  # "base/cliff.toml <- ~/Library/Application\ Support/git-cliff/cliff.toml"
+
+  #lsp
+  "mac/rassumfrassum <- ~/.config/rassumfrassum"
 
 )
 
 # --------------------------- LINUX -------------------------------
 
 declare -ar SYS_linux=(
-  "linux/.gitconfig <- .gitconfig"
+  "linux/.gitconfig <- ~/.gitconfig"
   # py
   # "linux/requirements.txt <- $dotcache/requirements.txt"
   # pnpm
   "linux/Pnpmfile <- $dotcache/Pnpmfile"
 )
 
-# ---------------------------- WIN --------------------------------
-
 #  -------------------------- machine ------------------------------
 
 declare -ar home_air15=(
   # zsh
 
-  "home_air15/zsh/.zshenv <- .zshenv"
+  "home_air15/zsh/.zshenv <- ~/.zshenv"
   "home_air15/zsh/.zsh_history <- $dotcache/.zsh_history"
   "home_air15/zsh/init.zsh <- $dotcache/init.zsh"
 
@@ -108,6 +111,6 @@ declare -ar home_air15=(
   "home_air15/Brewfile <- $dotcache/Brewfile"
 
   # ssh
-  "home_air15/ssh_config <- .ssh/config"
+  "home_air15/ssh_config <- ~/.ssh/config"
 
 )

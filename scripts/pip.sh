@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && source "./utils.sh"
 
-_pip_cache="$HOME/$dotcache/requirements.txt"
+_pip_cache="$dotcache/requirements.txt"
 
 pip_check() {
   if ! cmd_exists "pip3"; then

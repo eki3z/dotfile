@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")" && source "./utils.sh"
 
-_brew_cache="$HOME/$dotcache/Brewfile"
+_brew_cache="$dotcache/Brewfile"
 
 brewfile_check() {
   if [ ! -h "$_brew_cache" ]; then

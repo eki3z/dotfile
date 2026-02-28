@@ -2,8 +2,8 @@
 
 # SEE https://stackoverflow.com/a/53772163
 
-cd "$(dirname "${BASH_SOURCE[0]}")" && source "./utils.sh"
-
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
+source "./utils.sh"
 source "../path.sh"
 
 declare -a sets_to_link=("BASE")
@@ -14,7 +14,7 @@ select_set() {
     if [ -n "$opt" ]; then
       case $opt in
         Quit)
-          exit 1
+          exit 0
           ;;
         BASE)
           return 0
@@ -38,7 +38,7 @@ select_set() {
               current_os="SYS_win"
               ;;
             *)
-              echo "system cannot identified !" && exit 1
+              print_error "System cannot be identified!" && exit 1
               ;;
           esac
           sets_to_link+=("$current_os" "$opt")
@@ -73,10 +73,12 @@ create_symlinks() {
       local source target cmd info
       if [[ "$i" =~ $regexp ]]; then
         source="$(cd ../source && echo "$PWD/${BASH_REMATCH[1]}" || exit)"
-        target="$HOME/${BASH_REMATCH[2]}"
+        target="${BASH_REMATCH[2]}"
+        target="${target/#\~/$HOME}"
+        local target_pretty="${target/#$HOME/~}"
 
-        cmd="ln -fs $source $target"
-        info="$(printf "%-30s  <-    ~/%s" "${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}")"
+        cmd="ln -fs \"$source\" \"$target\""
+        info="$(printf "%-30s  <-    %s" "${BASH_REMATCH[1]}" "$target_pretty")"
 
         if [ ! -e "$source" ] && [ ! -e "$target" ]; then
           print_error "Lack  $info"
@@ -86,9 +88,9 @@ create_symlinks() {
           if [ "$(readlink "$target")" == "$source" ]; then
             print_in_purple "   [✔] Same  $info\n"
           else
-            ask_for_confirmation "\"~/${BASH_REMATCH[2]}\" exists, overwrite it?"
+            ask_for_confirmation "\"$target_pretty\" exists, overwrite it?"
             if answer_is_yes; then
-              mv "$target" "$HOME/$dotcache/backup"
+              mv "$target" "$dotcache/backup"
               execute "$cmd" "Cover $info"
             else
               print_error "Keep  $info"
@@ -107,7 +109,7 @@ create_symlinks() {
 
 main() {
   print_in_purple "\n   link: backup check ...\n\n"
-  mkd "$HOME/$dotcache/backup"
+  mkd "$dotcache/backup"
 
   print_in_purple "\n   link: select your choice ...\n\n"
   select_set
