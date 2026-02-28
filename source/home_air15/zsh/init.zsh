@@ -89,10 +89,10 @@ HIST_STAMPS="yyyy-mm-dd"
 ZSH_CUSTOM="$ZSH/custom"
 
 # Set cache dir
-ZSH_CACHE_DIR="$DATA_DIR/oh-my-zsh"
+ZSH_CACHE_DIR="$XDG_CACHE_HOME/oh-my-zsh"
 
 # Set compdump file
-ZSH_COMPDUMP="$DATA_DIR/.zcompdump"
+ZSH_COMPDUMP="$XDG_CACHE_HOME/.zcompdump"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -216,7 +216,7 @@ omz_update() {
 }
 
 # evalcache
-ZSH_EVALCACHE_DIR=$ZSH_CACHE_DIR/.zsh-evalcache
+ZSH_EVALCACHE_DIR="$ZSH_CACHE_DIR/.zsh-evalcache"
 
 # pip
 command -v pip >/dev/null && _evalcache pip completion --zsh 2>/dev/null
@@ -252,6 +252,8 @@ setopt GLOB_DOTS
 setopt hist_reduce_blanks
 setopt bang_hist
 setopt hist_save_no_dups
+setopt sharehistory
+setopt inc_append_history
 
 # Automatically update PATH entries
 zstyle ':completion:*' rehash true

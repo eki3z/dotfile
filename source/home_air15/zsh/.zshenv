@@ -5,28 +5,34 @@
 
 ## ---------------------------- Zsh --------------------------------
 
-# default
-export CONFIG_DIR=$HOME/.config
-export DATA_DIR=$HOME/.local/share
+# unix style env
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_BIN_HOME="$HOME/.local/bin"
+
+export PATH="$XDG_BIN_HOME:$PATH"
 
 # dotfile
-export DOTFILE_HOME=$CONFIG_DIR/dotfile
+export DOTFILE_HOME="$XDG_CONFIG_HOME/dotfile"
+
+# emacs
+export EMACS_HOME="$XDG_CONFIG_HOME/emacs"
+export PATH="$EMACS_HOME/bin:$PATH"
 
 # misc
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TIME_STYLE="+%y-%m-%d %H:%M"
 export PAGER="less --tabs=4"
-export LESSHISTFILE=$DATA_DIR/.lesshst
 
 # hist
-export HISTFILE=$HOME/.zsh_history
+export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 
 # PATH
-export PATH=$HOME/.config/emacs/etc/bin:$HOME/.local/bin:$PATH
-
 export EDITOR="ec"
 export GIT_PAGER="diff-so-fancy | less --tabs=4 -RFX"
 
@@ -39,7 +45,7 @@ export GIT_PAGER="diff-so-fancy | less --tabs=4 -RFX"
 export LSP_USE_PLISTS=true
 
 # emacs enchant
-export ENCHANT_CONFIG_DIR=$CONFIG_DIR/enchant/
+export ENCHANT_CONFIG_DIR="$XDG_CONFIG_HOME/enchant/"
 
 # ssh
 export SSH_KEY_PATH=$HOME/.ssh/id_ed25519
@@ -63,11 +69,9 @@ export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-
 # gnu toolchain
 
-for item in "coreutils" "findutils" "grep" "make" "gnu-time" "gnu-tar" "gnu-sed"
-do
+for item in "coreutils" "findutils" "grep" "make" "gnu-time" "gnu-tar" "gnu-sed"; do
   export PATH=/opt/homebrew/opt/$item/libexec/gnubin:$PATH
 done
 
@@ -78,23 +82,22 @@ export PATH=/opt/homebrew/opt/curl/bin:$PATH
 export PATH=/opt/homebrew/opt/gnu-getopt/bin:$PATH
 
 # Ripgrep
-export RIPGREP_CONFIG_PATH=$CONFIG_DIR/.ripgreprc
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/.ripgreprc"
 
 # lazygit
 # FIXME config dir failed
-export XDG_CONFIG_HOME="$CONFIG_DIR"
 
 # tealdeer
-export TEALDEER_CONFIG_DIR=$CONFIG_DIR/tealdeer
+export TEALDEER_CONFIG_DIR="$XDG_CONFIG_HOME/tealdeer"
 
 # z.lua
-export _ZL_DATA=$DATA_DIR/.zlua
+export _ZL_DATA="$XDG_DATA_HOME/.zlua"
 export _ZL_ECHO=1
 export _ZL_ADD_ONCE=0
 export _ZL_MATCH_MODE=0
 export _ZL_HYPHEN=1
 export _ZL_ROOT_MARKERS=".git,.svn,.hg,.root,package.json"
-# export _ZL_EXCLUDE_DIRS="$DATA_DIR"
+# export _ZL_EXCLUDE_DIRS="$XDG_DATA_HOME"
 
 ## z.lua.plugin.zsh
 export _ZL_ZSH_NO_FZF=0
@@ -179,4 +182,3 @@ export PATH="$HOME/.moon/bin:$PATH"
 
 # flutter
 export PATH="$HOME/code/dev/flutter/bin:$PATH"
-
