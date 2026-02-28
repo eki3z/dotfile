@@ -142,13 +142,23 @@ plugins=(
 
 # function
 plugin_ensure() {
-  local repo=https://github.com/$1.git
-  local dir=$ZSH_CUSTOM/plugins/${2:-$(echo "$repo" | sed -e 's|/$||' -e 's|:*/*\.git$||' -e 's|.*[/:]||g')}
-  if [ ! -d $dir/.git ]; then
-    echo "Installing $repo ..."
-    command git clone $repo $dir &&
-      echo "Installation successful." ||
-      echo "The clone has failed."
+  local name="${2:-${${1##*/}%.git}}"
+  local dir="$ZSH_CUSTOM/plugins/$name"
+
+  if [[ -d "$dir" && ! -d "$dir/.git" ]]; then
+    command rm -rf "$dir"
+  fi
+
+  [[ -d "$dir/.git" ]] && return 0
+
+  local url="https://github.com/${1%.git}.git"
+  echo "Installing plugin: $name ..."
+  
+  if command git clone --depth 10 --recurse-submodules "$url" "$dir" &>/dev/null ; then
+    echo "$name installed successfully."
+  else
+    echo "Error: Failed to clone $url" >&2
+    return 1
   fi
 }
 
@@ -165,18 +175,14 @@ plugin_ensure zdharma-continuum/fast-syntax-highlighting
 
 # ---------------------- Before loading --------------------------
 
-# brew installation
-command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://mirrors.ustc.edu.cn/misc/brew-install.sh)"
-
 # mise installation
-command -v mise >/dev/null || /bin/bash -c "$(curl https://mise.run)"
+command -v mise >/dev/null || curl -fsSL https://mise.run | sh
 
 # pnpm installation
-command -v pnpm >/dev/null || /bin/bash -c "$(curl -fsSL https://get.pnpm.io/install.sh)"
+command -v pnpm >/dev/null || curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 # brew completion
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
 
 # autosuggestions
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
@@ -220,6 +226,8 @@ command -v fzf >/dev/null && _evalcache fzf --zsh 2>/dev/null
 command -v moon >/dev/null && _evalcache moon shell-completion --shell zsh 2>/dev/null
 # pnpm
 command -v pnpm >/dev/null && _evalcache pnpm completion zsh 2>/dev/null
+# ty
+command -v ty >/dev/null && _evalcache ty generate-shell-completion zsh 2>/dev/null
 
 # zlua, for emacs use
 export ZLUA_SCRIPT

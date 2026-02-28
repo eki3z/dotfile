@@ -6,16 +6,16 @@ SCRIPTS_DIR  = $(CURDIR)/scripts
 cmdtool:
 	@source $(SCRIPTS_DIR)/cmd-line-tool.sh;
 
-link:
-	@source $(SCRIPTS_DIR)/link.sh;
-
 homebrew:
 	@source $(SCRIPTS_DIR)/homebrew.sh;
 
 shell: homebrew
 	@source $(SCRIPTS_DIR)/shell.sh;
 
-mac-setup: cmdtool link homebrew shell
+link:
+	@source $(SCRIPTS_DIR)/link.sh;
+
+mac-setup: cmdtool homebrew shell link
 	@exec zsh;
 
 brew: homebrew
