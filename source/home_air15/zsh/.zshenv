@@ -103,7 +103,7 @@ export _ZL_ZSH_NO_FZF=0
 export _ZL_NO_ALIASES=1
 
 # fzf
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND="rg --files --ignore-file=$XDG_CONFIG_HOME/rg/.rgignore"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="
 --header-first

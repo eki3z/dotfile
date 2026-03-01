@@ -25,6 +25,8 @@ tmp/
 .z
 .z.*
 
+**/.git/*
+
 # python
 *.pyc
 *.pyi

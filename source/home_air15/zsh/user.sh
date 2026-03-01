@@ -21,6 +21,7 @@ alias rt='trash'
 alias lg='lazygit'
 alias pc="proxychains4"
 alias h="htop"
+alias rg='rg --ignore-file=$XDG_CONFIG_HOME/rg/.rgignore'
 
 #  ---------------------------- Git --------------------------------
 
