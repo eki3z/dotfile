@@ -92,6 +92,24 @@ alias grv='git revert'
 alias grvv='git revert HEAD'
 alias grvn='git revert --no-commit'
 
+# 优化巨型子模块项目的 Git 性能
+# 用法:
+#   goptmise
+# 功能:
+#   为当前仓库设置子模块相关的 Git 本地配置以提升性能
+goptmise() {
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Not a git repo."
+    return 1
+  fi
+
+  git config --local status.ignoreSubmodules dirty
+  git config --local diff.ignoreSubmodules dirty
+  git config --local diff.submodule log
+  git config --local status.submoduleSummary true
+  echo "Done"
+}
+
 #######################################
 # Rename a git branch locally and remotely (if tracked).
 # Arguments:

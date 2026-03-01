@@ -239,7 +239,6 @@ bindkey ",," autosuggest-accept
 
 # use emacs-style keybinds
 bindkey -e
-bindkey "^V" clear-screen
 
 setopt print_exit_value
 setopt PROMPT_SUBST

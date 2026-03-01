@@ -18,9 +18,9 @@
 	autocrlf = input
 	excludesfile = ~/.gitignore
 	quotepath = false
-	# for mac and linux
-    fsmonitor = true
-	untrackedCache = true
+	## for big monorepo, not suitable with lots of submodules
+	# fsmonitor = true
+	# untrackedCache = true
 
 [safe]
 	# single user is safe.
@@ -60,10 +60,6 @@
 [rerere]
 	enabled = true
 
-[diff]
-	ignoreSubmodules = untracked
-	submodule = log
-
 [difftool]
 	prompt = false
 
@@ -85,15 +81,20 @@
 [pull]
 	rebase = true
 
-[status]
-	submoduleSummary = true
-
 [http]
 	sslVerify = false
 	postBuffer = 524288000
 
 [tag]
 	sort = version:refname
+
+## submodule settings
+[status]
+	submoduleSummary = true
+	ignoreSubmodules = untracked
+[diff]
+	submodule = diff
+	ignoreSubmodules = untracked
 
 ## --------------------------- Tool -------------------------------
 
@@ -108,7 +109,7 @@
 	changeHunkIndicators = false
 
 # emacs
-[core]	
+[core]
 	editor = ec
 [diff]
 	tool = edf
