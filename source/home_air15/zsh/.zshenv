@@ -86,6 +86,9 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/.ripgreprc"
 # tealdeer
 export TEALDEER_CONFIG_DIR="$XDG_CONFIG_HOME/tealdeer"
 
+# git-cliff
+export GIT_CLIFF_CONFIG="$XDG_CONFIG_HOME/cliff.toml"
+
 # z.lua
 export _ZL_DATA="$XDG_DATA_HOME/.zlua"
 export _ZL_ECHO=1
