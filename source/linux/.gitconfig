@@ -1,0 +1,11 @@
+# git config in Linux
+
+[include]
+	path = ~/.global.gitconfig
+
+[credential]
+	helper = cache --timeout=3600
+
+[core]
+	ignorecase = false
+

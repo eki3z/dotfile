@@ -17,8 +17,6 @@ alias uap="export ALL_PROXY="
 
 # App
 # -----------------------
-alias asr='alias | rg'
-alias rg='rg --ignore-file=~/.gitignore --ignore-file=~/.config/.rgignore'
 alias rt='trash'
 alias lg='lazygit'
 alias pc="proxychains4"
@@ -104,7 +102,7 @@ alias grvn='git revert --no-commit'
 #######################################
 grename() {
   local old_branch new_branch
-  
+
   if [[ -z "$1" ]]; then
     echo "Usage: grename [old_branch] new_branch"
     return 1
@@ -121,7 +119,7 @@ grename() {
 
   # Rename branch locally
   git branch -m "$old_branch" "$new_branch"
-  
+
   # Check if the old branch was tracking a remote branch
   if git config "branch.${old_branch}.remote" >/dev/null 2>&1; then
     # Push the new branch and set upstream
@@ -160,12 +158,12 @@ grebuild() {
 
   echo "Running garbage collection..."
   git gc --aggressive --prune=all >/dev/null 2>&1
-  
+
   # Restore original branch if possible
   if [[ -n "$current_branch" ]]; then
     git checkout "$current_branch" >/dev/null 2>&1
   fi
-  
+
   echo "Done. Use 'git push -f --all' to update remote."
 }
 

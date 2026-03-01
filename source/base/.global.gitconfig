@@ -1,3 +1,13 @@
+[user]
+	name = liuyinz
+	email = liuyinz95@outlook.com
+
+[github]
+	user = liuyinz
+
+[push]
+	followTags = true
+
 [init]
 	defaultBranch = main
 
@@ -8,6 +18,13 @@
 	autocrlf = input
 	excludesfile = ~/.gitignore
 	quotepath = false
+	# for mac and linux
+    fsmonitor = true
+	untrackedCache = true
+
+[safe]
+	# single user is safe.
+	directory = *
 
 ## BUG recommended by gun manual, but conflicts with oh-my-zsh clone.
 # [transfer]
@@ -19,26 +36,6 @@
 	status = auto
 	branch = auto
 
-[color "branch"]
-	current = green bold
-	local = green
-	remote = red
-
-# SEE https://git-scm.com/docs/git-config#Documentation/git-config.txt-color
-[color "diff"]
-	meta = yellow bold
-	frag = blue bold
-	commit = green bold
-	old = red
-	new = green
-	whitespace = red reverse
-
-[color "diff-highlight"]
-	oldNormal = red
-	oldHighlight = black bold red
-	newNormal = green
-	newHighlight = black bold green
-
 [commit]
 	template = ~/.gitmessage
 
@@ -46,9 +43,6 @@
 	date = short
 	coloring = repeatedLines
 	blankBoundary = true
-
-[color "blame"]
-	repeatedLines = green
 
 [log]
 	abbrevCommit = true
@@ -112,3 +106,28 @@
 	useUnicodeRuler = false
 	rulerWidth = 58
 	changeHunkIndicators = false
+
+# emacs
+[core]	
+	editor = ec
+[diff]
+	tool = edf
+[difftool "edf"]
+	cmd = edf "$LOCAL" "$REMOTE"
+[merge]
+	tool = edf
+[mergetool "edf"]
+	cmd = edf "$MERGED"
+	# cmd = edf "$LOCAL" "$REMOTE" "$MERGED" "$BASE"
+
+# # vscode
+# [core]
+# 	editor = code --wait
+# [diff]
+# 	tool = vscode
+# [difftool "vscode"]
+#     cmd = code --wait --diff $LOCAL $REMOTE
+# [merge]
+#     tool = vscode
+# [mergetool "vscode"]
+#     cmd = code --wait "$MERGED"

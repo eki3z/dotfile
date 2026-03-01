@@ -5,6 +5,23 @@
 
 ## ---------------------------- Zsh --------------------------------
 
+# misc
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TIME_STYLE="+%y-%m-%d %H:%M"
+export PAGER="less --tabs=4"
+export TERM="xterm-256color"
+
+# hist
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+export EDITOR="ec"
+# export GIT_PAGER="diff-so-fancy | less --tabs=4 -RFX"
+
+# ssh
+export SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
+
 # unix style env
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -17,44 +34,27 @@ export PATH="$XDG_BIN_HOME:$PATH"
 # dotfile
 export DOTFILE_HOME="$XDG_CONFIG_HOME/dotfile"
 
-# emacs
-export EMACS_HOME="$XDG_CONFIG_HOME/emacs"
-export PATH="$EMACS_HOME/bin:$PATH"
-
-# misc
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export TIME_STYLE="+%y-%m-%d %H:%M"
-export PAGER="less --tabs=4"
-
-# hist
-export HISTFILE="$HOME/.zsh_history"
-export HISTSIZE=1000000000
-export SAVEHIST=$HISTSIZE
-
-# PATH
-export EDITOR="ec"
-export GIT_PAGER="diff-so-fancy | less --tabs=4 -RFX"
-
 # export HTTP_ADDR=${HTTP%:*}
 # export HTTP_PORT=${HTTP#*:}
 # export SOCKS_ADDR=${SOCKS%:*}
 # export SOCKS_PORT=${SOCKS#*:}
 
+export TERM="xterm-256color"
+
+
 #  --------------------------- Tool -------------------------------
-export LSP_USE_PLISTS=true
+# emacs
+# export LSP_USE_PLISTS=true
+export EMACS_HOME="$XDG_CONFIG_HOME/emacs"
+export PATH="$EMACS_HOME/bin:$PATH"
 
-# emacs enchant
+# enchant
 export ENCHANT_CONFIG_DIR="$XDG_CONFIG_HOME/enchant/"
-
-# ssh
-export SSH_KEY_PATH=$HOME/.ssh/id_ed25519
 
 # pass
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 # homebrew
-export HOMEBREW_BAT=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_UPGRADE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
@@ -70,7 +70,6 @@ export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # gnu toolchain
-
 for item in "coreutils" "findutils" "grep" "make" "gnu-time" "gnu-tar" "gnu-sed"; do
   export PATH=/opt/homebrew/opt/$item/libexec/gnubin:$PATH
 done
@@ -82,10 +81,7 @@ export PATH=/opt/homebrew/opt/curl/bin:$PATH
 export PATH=/opt/homebrew/opt/gnu-getopt/bin:$PATH
 
 # Ripgrep
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/.ripgreprc"
-
-# lazygit
-# FIXME config dir failed
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/.ripgreprc"
 
 # tealdeer
 export TEALDEER_CONFIG_DIR="$XDG_CONFIG_HOME/tealdeer"
@@ -158,7 +154,8 @@ export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
 # rust
-export PATH="$HOME/.cargo/bin:$PATH"
+export CARGO_HOME="$HOME/.cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
@@ -171,8 +168,6 @@ export PATH="$PNPM_HOME:$PATH"
 # export PATH=$GOPATH/bin:$PATH
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
-
-export TERM="xterm-256color"
 
 # html
 export HTML_TIDY="$HOME/.tidyrc"

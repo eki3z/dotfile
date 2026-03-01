@@ -25,7 +25,7 @@ zsh_install() {
 
 zsh_default() {
   local brew_zsh_path="/usr/local/bin/zsh"
-  
+
   # On Apple Silicon, homebrew path is different
   if [[ "$(uname -m)" == "arm64" ]]; then
     brew_zsh_path="/opt/homebrew/bin/zsh"
@@ -45,7 +45,7 @@ zsh_default() {
   # Set zsh as the user login shell
   local current_shell
   current_shell=$(dscl . -read /Users/"$USER" UserShell | awk '{print $2}')
-  
+
   if [[ "$current_shell" != "$brew_zsh_path" ]]; then
     print_info "Setting Homebrew zsh ($brew_zsh_path) as your default shell (password required)..."
     sudo chsh -s "$brew_zsh_path" "$USER"
@@ -59,7 +59,7 @@ zshrc_init() {
   if [ ! -e "$HOME/.zshrc" ]; then
     print_info "Initializing .zshrc..."
     # shellcheck disable=SC2016
-    cat > "$HOME/.zshrc" <<EOF
+    cat >"$HOME/.zshrc" <<EOF
 ## Uncomment line below to start zsh profiler
 # ZSH_PROFILER="true"
 source \$DOTFILE_HOME/.cache/init.zsh
@@ -74,7 +74,7 @@ EOF
 
 main() {
   print_in_purple "\n   Shell Setup Check\n\n"
-  
+
   bash_install
   # macOS now defaults to zsh, so no need to install/set it manually
   # zsh_install

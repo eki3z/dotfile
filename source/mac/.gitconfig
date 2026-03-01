@@ -6,45 +6,8 @@
 [credential]
 	helper = osxkeychain
 
-[user]
-	name = liuyinz
-	email = liuyinz95@outlook.com
+[core]
+	ignorecase = true
 
 [submodule]
 	fetchJobs = 8
-
-[github]
-	user = liuyinz
-
-[push]
-	followTags = true
-
-# emacsclient
-[core]
-	editor = ec
-[diff]
-	tool = edf
-[difftool "edf"]
-	cmd = edf "$LOCAL" "$REMOTE"
-[merge]
-	tool = edf
-[mergetool "edf"]
-	cmd = edf "$MERGED"
-	# cmd = edf "$LOCAL" "$REMOTE" "$MERGED" "$BASE"
-
-# # vscode
-# [core]
-# 	editor = code --wait
-# [diff]
-# 	tool = vscode
-# [difftool "vscode"]
-#     cmd = code --wait --diff $LOCAL $REMOTE
-# [merge]
-#     tool = vscode
-# [mergetool "vscode"]
-#     cmd = code --wait "$MERGED"
-
-[include]
-	path = ~/.local.gitconfig
-[safe]
-	directory = *

@@ -5,6 +5,7 @@
 --smart-case
 --auto-hybrid-regex
 --sortr=modified
+--ignore-file=~/.config/rg/.rgignore
 
 # ui
 --colors=path:fg:blue

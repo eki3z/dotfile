@@ -1,7 +1,7 @@
 disable=SC2116
 
 # NOTE ignore all such compatibility warnings
-# see@https://github.com/koalaman/shellcheck/wiki/SC3057
+# see https://github.com/koalaman/shellcheck/wiki/SC3057
 disable=SC3000-SC4000
 
 external-sources=true

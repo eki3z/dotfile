@@ -34,10 +34,10 @@ gui:
   showRandomTip: false
   showBottomLine: false
   showCommandLog: false
-  
 git:
   branchLogCmd: "git log --color=always --abbrev-commit --date=relative {{branchName}} --"
-  allBranchesLogCmd: "git log --all --color=always --abbrev-commit --date=relative"
+  allBranchesLogCmds:
+    - git log --all --color=always --abbrev-commit --date=relative
 os:
   edit: "ec {{filename}}" # see 'Configuring File Editing' section
   editInTerminal: false
