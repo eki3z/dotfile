@@ -2,10 +2,11 @@
 
 # Global constants
 # DOTCACHE directory (absolute path)
-  # shellcheck disable=SC2034
+# shellcheck disable=SC2034
 DOTCACHE="${DOTFILE_HOME:-$HOME/.config/dotfile}/.cache"
+
 # Use tput for better portability, fallback to ANSI codes if tput fails
-if tput setaf 1 &> /dev/null; then
+if tput setaf 1 &>/dev/null; then
   COLOR_RED=$(tput setaf 1)
   COLOR_GREEN=$(tput setaf 2)
   COLOR_YELLOW=$(tput setaf 3)
@@ -82,7 +83,7 @@ execute() {
 
   # Execute commands in background
   eval "$CMDS" \
-    > /dev/null \
+    >/dev/null \
     2>"$TMP_FILE" &
 
   cmdsPID=$!
@@ -122,6 +123,7 @@ get_os() {
   elif [ "$kernelName" == "Linux" ] \
     && [ -e "/etc/os-release" ]; then
     os="$(
+      # shellcheck disable=SC1091
       . /etc/os-release
       printf "%s" "$ID"
     )"
@@ -142,6 +144,7 @@ get_os_version() {
     version="$(sw_vers -productVersion)"
   elif [ -e "/etc/os-release" ]; then
     version="$(
+      # shellcheck disable=SC1091
       . /etc/os-release
       printf "%s" "$VERSION_ID"
     )"
